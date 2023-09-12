@@ -4,4 +4,5 @@
 
 feed:
     url: "https://www.elsistemad13.com/feed/"
-    days: 1
+    days: 10
+    repetitions: 20

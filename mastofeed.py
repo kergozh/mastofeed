@@ -22,30 +22,29 @@ class Bot(Mastobot):
 
     def run(self, botname: str = BOT_NAME) -> None:
 
+        now        = datetime.now()
+        time_range = timedelta(days=int((self._actions.get("feed.days"))))
+ 
         feed = feedparser.parse(self._actions.get("feed.url"))
 
         for entry in feed.entries:
-            if self.check_entry(entry):
-                self.post_toot (self.find_text(entry), "en")    
+            if self.check_entry(entry, now, time_range):
+                self.post_toot (self.find_text(entry), "es")    
  
         super().run(botname = botname)
 
 
-    def check_entry(self, entry) -> bool:
+    def check_entry(self, entry, now, time_range) -> bool:
 
         valid = False
 
         # Control de data
-
-        now        = datetime.now()
-        time_range = timedelta(days=(self._actions.get("feed.days")))
-        entry_date = datetime.strptime(entry.published, "%a, %d %b %Y %H:%M:%S %z")
+        entry_date = (datetime.strptime(entry.published, "%a, %d %b %Y %H:%M:%S %z")).replace(tzinfo=None)
 
         if now - entry_date <= time_range:
  
             # Control de repeticions
-            if not self.check_repetition (entry.link, self._actions.get("publish.repetitions")):
-                valid = True
+            valid = self.check_repetition (entry.link, self._actions.get("feed.repetitions"))
           
         return valid
 
@@ -55,27 +54,18 @@ class Bot(Mastobot):
         text_list = []
         title  = entry.title                   
         link   = entry.link                
-        sumary = entry.sumary 
 
-        self._logger.debug("id      : %s", str(quote[0]))                    
-        self._logger.debug("text    : %s", text)                    
-        self._logger.debug("comments: %s", comments)                     
-        self._logger.debug("source  : %s", source)   
+        self._logger.debug("id      : %s", title)                    
+        self._logger.debug("text    : %s", link)                    
          
-        text_list.append(text)
+        text_list.append(title)
         text_list.append("\n\n")
 
-        if comments != "":
-            text_list.append(comments)
-            text_list.append("\n")
-
-        text_list.append(source)
+        text_list.append(link)
         text_list.append("\n\n")
 
-        hashtag = "#GNUTerryPratchett, #SpeakHisName, #Discworld" 
-
-        if len("".join(text_list)) + len(hashtag) < self._max_lenght:
-            text_list.append(hashtag) 
+        hashtag = "#webcomic, #rol, #elSistemaD13" 
+        text_list.append(hashtag) 
 
         post_text  = "".join(text_list)
 
