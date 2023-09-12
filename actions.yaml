@@ -1,0 +1,7 @@
+######################
+#  list of actions   #
+######################
+
+feed:
+    url: "https://www.elsistemad13.com/feed/"
+    days: 1

@@ -1,0 +1,5 @@
+Mastodon.py>=1.5.1
+Unidecode>=1.3.6
+pyyaml
+feedparser
+git+https://github.com/kergozh/pybot

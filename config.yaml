@@ -1,0 +1,69 @@
+#############################
+#    Mastodon publish bot   #
+#############################
+
+# App Info
+app:
+  # [String] Name of the app
+  name: "feed"
+  # [Integer] Toot max lenght
+  max_lenght: 490
+  # [String] Name of the actions file
+  actions_file_name: "actions.yaml"
+  # [String] Name of the output file 
+  control_file_name: "control.csv" 
+  # [String] Name of the output directory 
+  working_directory: "out" 
+
+# Mastobot config
+bot:
+  # [String] Name of the app
+  app_name: "D13"
+  # [String]  Instance hostname 
+  hostname: "frikiverse.zone"
+  # [String] Access type: Access Token = "AT" | Credentials = "CR" 
+  access_type: "CR"
+
+# Mastobot access token configuration
+access_token:
+  # [String] client id
+  client_id: "aaa"
+  # [String] Client secret
+  secret: "bbb"
+  # [String] Access token
+  token: "ccc"
+
+# Mastobot credentials configuration
+credentials:
+  # [Bool] With credentials, force log in
+  force_login: False
+  # [String] Name of the secrets directory
+  secrets_directory: "secrets"
+  # [String] Name of the secrets file path
+  secrets_file_name: "secrets.txt"
+
+# Testing options
+testing:
+  # [Bool] Disable push to Mastodon
+  disable_post: True
+  # [Bool] force private mention
+  force_mention: False
+  # [Bool] user in forced privated mention
+  user_mention: "none"
+
+# Logging config
+logger:
+  # [Integer] Log level: NOTSET=0 | DEBUG=10 | INFO=20 | WARN=30 | ERROR=40 | CRITICAL=50
+  loglevel: 10
+  # [String] Name of the logger
+  name: "mastofeed_bot"
+  # [Bool] Dump the log into a file
+  to_file: False
+  # [String] Directory of the logger
+  directory: "log"
+  # [String] Filename of the log file
+  filename: "mastofeed_bot.log"
+  # [Bool] Dump the log into a stdout
+  to_stdout: True
+  # [String] Format of the log
+  format: "[%(asctime)s] %(levelname)-8s %(name)-12s %(message)s"
