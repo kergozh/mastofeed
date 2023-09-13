@@ -22,14 +22,26 @@ class Bot(Mastobot):
 
     def run(self, botname: str = BOT_NAME) -> None:
 
+        post       = 0
+        max        = int(self._actions.get("feed.max"))
         now        = datetime.now()
         time_range = timedelta(days=int((self._actions.get("feed.days"))))
  
         feed = feedparser.parse(self._actions.get("feed.url"))
 
-        for entry in feed.entries:
+        if self._actions.get("feed.reverse"):
+            sorted_entried  = sorted(feed.entries, key=lambda entry : entry.published_parsed)
+        else:
+            sorted_entried  = sorted(feed.entries, reverse=True, key=lambda entry : entry.published_parsed)
+        
+        for entry in sorted_entried:
+
             if self.check_entry(entry, now, time_range):
-                self.post_toot (self.find_text(entry), "es")    
+                self.post_toot (self.find_text(entry), "es")
+                post = post + 1
+            
+            if max > 0 and post >= max:
+                break        
  
         super().run(botname = botname)
 
@@ -44,7 +56,8 @@ class Bot(Mastobot):
         if now - entry_date <= time_range:
  
             # Control de repeticions
-            valid = self.check_repetition (entry.link, self._actions.get("feed.repetitions"))
+            indexes = [i for i, c in enumerate(entry.link) if c == "/"]
+            valid = self.check_repetition (entry.link[indexes[2]:], self._actions.get("feed.repetitions"))
           
         return valid
 
@@ -53,19 +66,24 @@ class Bot(Mastobot):
     
         text_list = []
         title  = entry.title                   
-        link   = entry.link                
+        link   = entry.link
 
-        self._logger.debug("id      : %s", title)                    
-        self._logger.debug("text    : %s", link)                    
-         
+        text_list.append(self._actions.get("feed.announcement"))
+        text_list.append("\n")
+
+        text_list.append(str(entry.published_parsed[2]))
+        text_list.append("/")
+        text_list.append(str(entry.published_parsed[1]))
+        text_list.append("/")
+        text_list.append(str(entry.published_parsed[0]))
+        text_list.append(": ")
         text_list.append(title)
         text_list.append("\n\n")
 
         text_list.append(link)
         text_list.append("\n\n")
 
-        hashtag = "#webcomic, #rol, #elSistemaD13" 
-        text_list.append(hashtag) 
+        text_list.append(self._actions.get("feed.hashtags")) 
 
         post_text  = "".join(text_list)
 

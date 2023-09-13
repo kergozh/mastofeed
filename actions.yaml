@@ -4,5 +4,9 @@
 
 feed:
     url: "https://www.elsistemad13.com/feed/"
+    announcement: "Atención, atención, página nueva de El sistema D13 de Joan Tretze."
+    hashtags: "#webcomic, #rol, #elSistemaD13" 
     days: 10
     repetitions: 20
+    max: 1
+    reverse: False
