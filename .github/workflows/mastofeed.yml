@@ -3,6 +3,7 @@ name: run mastofeed
 on:
   schedule:
     - cron: '1 * * * *' # At *:01 everyday
+  workflow_dispatch:
 
 jobs:
   build:
