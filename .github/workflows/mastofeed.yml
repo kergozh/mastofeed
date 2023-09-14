@@ -27,7 +27,7 @@ jobs:
           MASTO_CLIENT_ID: ${{ secrets.MASTO_CLIENT_ID }}
           MASTO_SECRET: ${{ secrets.MASTO_SECRET }}
           MASTO_TOKEN: ${{ secrets.MASTO_TOKEN }}
-        run: python main.py
+        run: python mastofeed.py
 
       - name: commit files
         run: |
