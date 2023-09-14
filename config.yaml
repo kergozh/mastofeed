@@ -21,8 +21,8 @@ bot:
   app_name: "D13"
   # [String]  Instance hostname 
   hostname: "frikiverse.zone"
-  # [String] Access type: Access Token = "AT" | Credentials = "CR" 
-  access_type: "CR"
+  # [String] Access type: Access Token = "AT" | Credentials = "CR" | AT from env variable = "GA" 
+  access_type: "GA"
 
 # Mastobot access token configuration
 access_token:

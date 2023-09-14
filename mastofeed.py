@@ -30,9 +30,9 @@ class Bot(Mastobot):
         feed = feedparser.parse(self._actions.get("feed.url"))
 
         if self._actions.get("feed.reverse"):
-            sorted_entried  = sorted(feed.entries, key=lambda entry : entry.published_parsed)
-        else:
             sorted_entried  = sorted(feed.entries, reverse=True, key=lambda entry : entry.published_parsed)
+        else:
+            sorted_entried  = sorted(feed.entries, key=lambda entry : entry.published_parsed)
         
         for entry in sorted_entried:
 
