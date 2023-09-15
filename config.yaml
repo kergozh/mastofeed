@@ -22,7 +22,7 @@ bot:
   # [String]  Instance hostname 
   hostname: "frikiverse.zone"
   # [String] Access type: Access Token = "AT" | Credentials = "CR" | AT from env variable = "GA" 
-  access_type: "GA"
+  access_type: "CR"
 
 # Mastobot access token configuration
 access_token:
@@ -45,7 +45,7 @@ credentials:
 # Testing options
 testing:
   # [Bool] Disable push to Mastodon
-  disable_post: False
+  disable_post: True
   # [Bool] force private mention
   force_mention: False
   # [Bool] user in forced privated mention
@@ -54,7 +54,7 @@ testing:
 # Logging config
 logger:
   # [Integer] Log level: NOTSET=0 | DEBUG=10 | INFO=20 | WARN=30 | ERROR=40 | CRITICAL=50
-  loglevel: 20
+  loglevel: 10
   # [String] Name of the logger
   name: "mastofeed_bot"
   # [Bool] Dump the log into a file
