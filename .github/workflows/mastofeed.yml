@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  check feed:
     runs-on: ubuntu-latest
     steps:
 
@@ -25,12 +25,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: create working directory
+        shell: bash
+        run: |
+          mkdir out
+
       - name: download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
           name: control-imported
           path: out
           if_no_artifact_found: warn
+
+      - name: Print the download file
+        shell: bash
+        run: |
+          cat out/control.csv
 
       - name: execute py script 
         env:
