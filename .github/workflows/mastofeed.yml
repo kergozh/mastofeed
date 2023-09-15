@@ -1,8 +1,10 @@
 name: run mastofeed
 
 on:
-  schedule:
-    - cron: '1 * * * *' # At *:01 everyday
+
+  # uncomment the following 2 lines so that it runs automatically every hour
+  # schedule:
+  #  - cron: '1 * * * *' 
   workflow_dispatch:
 
 jobs:

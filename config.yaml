@@ -45,7 +45,7 @@ credentials:
 # Testing options
 testing:
   # [Bool] Disable push to Mastodon
-  disable_post: True
+  disable_post: False
   # [Bool] force private mention
   force_mention: False
   # [Bool] user in forced privated mention
@@ -54,7 +54,7 @@ testing:
 # Logging config
 logger:
   # [Integer] Log level: NOTSET=0 | DEBUG=10 | INFO=20 | WARN=30 | ERROR=40 | CRITICAL=50
-  loglevel: 10
+  loglevel: 20
   # [String] Name of the logger
   name: "mastofeed_bot"
   # [Bool] Dump the log into a file
