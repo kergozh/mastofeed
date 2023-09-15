@@ -3,8 +3,8 @@ name: mastofeed
 on:
 
   # uncomment the following 2 lines so that it runs automatically every hour
-  schedule:
-    - cron: '1 * * * *' 
+  # schedule:
+  #   - cron: '1 * * * *' 
   workflow_dispatch:
 
 jobs:
