@@ -8,6 +8,7 @@
 from pybot.mastobot import Mastobot
 from datetime import datetime, timedelta
 import feedparser
+import random
 
 BOT_NAME = "D13"
 
@@ -68,7 +69,7 @@ class Bot(Mastobot):
         title  = entry.title                   
         link   = entry.link
 
-        text_list.append(self._actions.get("feed.announcement"))
+        text_list.append(random.choice(self._actions.get("feed.announcement")))
         text_list.append("\n")
 
         text_list.append(str(entry.published_parsed[2]))

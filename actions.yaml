@@ -4,7 +4,11 @@
 
 feed:
     url: "https://www.elsistemad13.com/feed/"
-    announcement: "Atención, atención, página nueva de El sistema D13 de Joan Tretze."
+    announcement: 
+        - "Atención, atención, página nueva de El sistema D13 de Joan Tretze."
+        - "Albrícias, Joan Tretze nos trae una nueva página de El sistema D13."
+        - "Alerta, que no se te pase la nueva página de El sistema D13 de Joan Tretze."
+        - "Alegría, Joan Tretze publica nueva página de El sistema D13."
     hashtags: "#webcomic #rol #elSistemaD13" 
     days: 10
     repetitions: 20
